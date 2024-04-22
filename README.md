@@ -38,7 +38,7 @@ tooth_predictor.train(train_dataset_path, val_dataset_path, test_dataset_path)
 
 ### Training Dataset Setup
 
-## Dataset folder structure
+### Dataset directory structure
 
 Datasets must follow the regular pytorch training guidelines. Images for each class therefore have to be stored in a seperate directory. The structure of the training datasets should look similar to this:
 
