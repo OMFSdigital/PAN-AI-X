@@ -1,6 +1,6 @@
 ## PAN-AI-X
 
-This repository contains the Python implementation of the PAN-AI-X Paper.
+This repository contains the Python implementation of the *Insights into Predicting Tooth Extraction from Panoramic Dental Images: Artificial Intelligence vs. Dentists* Paper.
 
 ### Models
 
@@ -69,5 +69,19 @@ Datasets must follow the regular pytorch training guidelines for simple classifi
 	    └── 01EX
 	        ├── extract0110.png
 	        ├── ...
+	 
+An example image for an extracted tooth would be this tooth that is also shown in the figures of our publication.
+
+<p align="center">
+	<img style="margin-left: auto; margin-right: auto;" alt="Example Tooth Margin 2%" src="https://github.com/OMFSdigital/PAN-AI-X/assets/38540238/9d3d68e1-36de-4cd1-995a-bb260c7f55b3">
+</p>
 
 ### How to cite
+
+```
+@article{pan-ai-x2024,
+    title={Insights into Predicting Tooth Extraction from Panoramic Dental Images: Artificial Intelligence vs. Dentists}, 
+    author={Ila Motmaen and Kunpeng Xie and Leon Schönbrunn and Jeff Berens and Kim Grunert and Anna Maria Plum and Johannes Raufeisen and Andre Ferreira and Alexander Hermans and Jan Egger and Frank Hölzle and Daniel Truhn and Behrus Puladi},
+    year={2024},
+}
+```
