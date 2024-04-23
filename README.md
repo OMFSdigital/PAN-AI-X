@@ -83,5 +83,6 @@ An example image for an extracted tooth would be this tooth that is also shown i
     title={Insights into Predicting Tooth Extraction from Panoramic Dental Images: Artificial Intelligence vs. Dentists}, 
     author={Ila Motmaen and Kunpeng Xie and Leon Schönbrunn and Jeff Berens and Kim Grunert and Anna Maria Plum and Johannes Raufeisen and Andre Ferreira and Alexander Hermans and Jan Egger and Frank Hölzle and Daniel Truhn and Behrus Puladi},
     year={2024},
+    doi = {https://doi.org/10.1101/2024.04.22.24306189},
 }
 ```
