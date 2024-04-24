@@ -11,28 +11,30 @@ from PIL import Image
 from torch.utils.tensorboard import SummaryWriter
 
 class PAN_AI_X:
-    def __init__(self, weights_path):
+    def __init__(self, weights_path=None):
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        self.model = self._load_model(weights_path).to(self.device)
-        self.model.eval()
+        self.model = self._load_model(weights_path)
         self.transformval = transforms.Compose([
-            transforms.Resize(256),
-            transforms.CenterCrop(224),
+            transforms.Resize((224,224)),
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ])
         self.transformtrain = transforms.Compose([
-            transforms.RandomResizedCrop(224),
+            transforms.RandomRotation(15),
             transforms.RandomHorizontalFlip(),
+            transforms.Resize((224,224)),
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
         ])
 
     def _load_model(self, weights_path):
-        model = models.resnet50(weights=None)
-        num_ftrs = model.fc.in_features
-        model.fc = nn.Linear(num_ftrs, 1)
-        model.load_state_dict(torch.load(weights_path))
+        if weights_path:
+            model = models.resnet50(weights=None)
+            num_ftrs = model.fc.in_features
+            model.fc = nn.Linear(num_ftrs, 1)
+            model.load_state_dict(torch.load(weights_path))
+        else:
+            model = None
         return model
         
     def _load_model_train(self):
@@ -42,17 +44,24 @@ class PAN_AI_X:
         return model
 
     def predict(self, image_path):
-        image = Image.open(image_path).convert("RGB")
-        image_tensor = self.transformval(image).unsqueeze(0).to(self.device)
-        
-        with torch.no_grad():
-            output = self.model(image_tensor)
-            prediction = torch.sigmoid(output).item()
-        
-        return prediction
+        if self.model:
+            self.model.to(self.device)
+            self.model.eval()
+            image = Image.open(image_path).convert("RGB")
+            image_tensor = self.transformval(image).unsqueeze(0).to(self.device)
+            
+            with torch.no_grad():
+                output = self.model(image_tensor)
+                prediction = torch.sigmoid(output).item()
+            
+            return prediction
+        else:
+            print('No model has been loaded via a weight_path.')
 
     def train(self, train_dataset, val_dataset, test_dataset):
         self.model = self._load_model_train().to(self.device)
+        
+        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
         
         train_set = datasets.ImageFolder(root=train_dataset, transform=self.transformtrain)
         train_loader = DataLoader(train_set, batch_size=32, shuffle=True)
@@ -120,7 +129,7 @@ class PAN_AI_X:
 
             if val_auc > best_auc:
                 best_auc = val_auc
-                torch.save(self.model.state_dict(), 'ToothPredictor_BestAUC.pth')
+                torch.save(self.model.state_dict(), 'ToothPredictor_BestAUC_' + str(timestamp) + '.pth')
         
         # Testing
         print('TESTING:')
@@ -156,7 +165,7 @@ class PAN_AI_X:
         print(f"Test AUC: {test_auc}")
         
         # Save the final trained model
-        torch.save(self.model.state_dict(), 'ToothPredictor_final.pth')
+        torch.save(self.model.state_dict(), 'ToothPredictor_final_' + str(timestamp) + '.pth')
 
 
 # Example usage:
