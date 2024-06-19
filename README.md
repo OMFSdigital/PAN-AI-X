@@ -80,9 +80,15 @@ An example image for an extracted tooth would be this tooth that is also shown i
 
 ```
 @article{pan-ai-x2024,
-    title={Insights into Predicting Tooth Extraction from Panoramic Dental Images: Artificial Intelligence vs. Dentists}, 
+    title={Insights into Predicting Tooth Extraction from Panoramic Dental Images: Artificial Intelligence vs. Dentists},
+    journal = {Clinical Oral Investigations},
+    pages = {381},
+    volume = {28},
+    number = {7},
+    issn = {1436-3771},
     author={Ila Motmaen and Kunpeng Xie and Leon Schönbrunn and Jeff Berens and Kim Grunert and Anna Maria Plum and Johannes Raufeisen and Andre Ferreira and Alexander Hermans and Jan Egger and Frank Hölzle and Daniel Truhn and Behrus Puladi},
     year={2024},
-    doi = {https://doi.org/10.1101/2024.04.22.24306189},
+    doi = {https://doi.org/10.1007/s00784-024-05781-5},
+    url = {https://link.springer.com/article/10.1007/s00784-024-05781-5}
 }
 ```
