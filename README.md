@@ -4,8 +4,8 @@ This repository contains the Python implementation of the *Insights into Predict
 
 ### Models
 
-The different [models](https://github.com/OMFSdigital/PAN-AI-X/tree/usage_example/models) depicted in the image above that were obtained from training with different image % margins can be found under models.
-The [2% margin model](https://github.com/OMFSdigital/PAN-AI-X/blob/usage_example/models/panaix_2.pth) performed best during testing and should be used to perform inference.
+The different [models](https://github.com/OMFSdigital/PAN-AI-X/tree/main/models) depicted in the image above that were obtained from training with different image % margins can be found under models.
+The [2% margin model](https://github.com/OMFSdigital/PAN-AI-X/blob/main/models/panaix_2.pth) performed best during testing and should be used to perform inference.
 
 ### Installation
 
